@@ -12,7 +12,7 @@ using projectDatSan.Models;
 
 namespace projectDatSan.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Login Manager Systerm";
+    //  Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Đăng nhập tài khoản</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    @Styles.Render("~/adminlte/bootstrap/css/bootstrap.min.css")
+    <!-- Font Awesome -->
+    @Styles.Render("~/adminlte/dist/css/font-awesome.min.css")
+    <!-- Ionicons -->
+    @Styles.Render("~/adminlte/dist/css/ionicons.min.css")
+    <!-- Theme style -->
+    @Styles.Render("~/adminlte/dist/css/AdminLTE.min.css")
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    @Styles.Render("~/adminlte/dist/css/skins/_all-skins.min.css")
+
+
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Đăng nhập</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <!-- Notifications: message/alert/waring -->
+        <!-- ./ notifications: message/alert/waring -->
+        @using (Html.BeginForm("ProcessLogin", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="login-box-body">
+                <p class="login-box-msg">Đăng nhập tài khoản quản trị</p>
+
+
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="User name" name="userID">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" name="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
+                </div>
+
+                <br />
+            </div>
+        }
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery 2.1.4 -->
+    @Scripts.Render("~/adminlte/plugins/jQuery/jQuery-2.1.4.min.js")
+    <!-- Bootstrap 3.3.5 -->
+    @Scripts.Render("~/adminlte/bootstrap/js/bootstrap.min.js")
+
+</body>
+</html>

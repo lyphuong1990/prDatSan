@@ -8,6 +8,7 @@ namespace projectDatSan.Models
 
     public partial class news
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
         [StringLength(250)]
@@ -16,7 +17,8 @@ namespace projectDatSan.Models
         [StringLength(2000)]
         public string description { get; set; }
 
-        public int? type { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int type { get; set; }
 
         public DateTime? create_date { get; set; }
 
