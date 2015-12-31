@@ -54,3 +54,9 @@ E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\obj\Debug\projectDat
 E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.dll
 E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.pdb
 E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\bin\log4net.dll
+E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\bin\PagedList.dll
+E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\bin\PagedList.Mvc.dll
+E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\bin\PagedList.xml
+E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\bin\PagedList.Mvc.xml
+E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.Properties.Resources.resources
+E:\PROJECT\ME!\SOURCE\C#\datsan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.csproj.GenerateResource.Cache

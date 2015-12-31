@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using PagedList;
 
 namespace projectDatSan.Controllers
 {
@@ -43,6 +44,7 @@ namespace projectDatSan.Controllers
             else
             {
                 Session[UserRole1.Username] = UserRole1;
+                Session["username"] = UserRole1.Username;
                 FormsAuthentication.SetAuthCookie(UserRole1.Username, true);
             }
             if (!string.IsNullOrEmpty(Request.Params["ReturnUrl"]))
@@ -67,6 +69,44 @@ namespace projectDatSan.Controllers
         {
 
             return View();
+        }
+        //@Methor:  LogOut 
+        //@Author cuongnt
+        //@Descript: process Logout system
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Test()
+        {
+            return View();
+        }
+        public ActionResult AccountManager(string UserID = "" ,int page=1)
+        {
+            IQueryable<account> acc;
+            List<account> acc1 = new List<account>();
+           
+            ViewBag.listRole = db.roles.Where(m => m.active == true).ToList();
+            if (!string.IsNullOrEmpty(UserID))
+            {
+                acc1 = db.accounts.Where(m => m.username.ToLower() == UserID.ToLower()).ToList();
+                return View(acc1.ToPagedList(page, 20));
+            }
+            else
+            {
+
+                acc1 = db.accounts.Select(m => m).ToList();
+                return View(acc1.ToPagedList(page, 5));
+            }
+        }
+        public ActionResult DeleteAccount(int id)
+        {
+            var account = db.accounts.Where(m => m.id == id).FirstOrDefault();
+            account.active = false;
+            db.SaveChanges();
+            return RedirectToAction("AccountManager", "Admin");
         }
     }
 }
