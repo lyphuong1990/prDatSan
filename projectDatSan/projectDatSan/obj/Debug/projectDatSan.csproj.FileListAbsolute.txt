@@ -19,6 +19,8 @@ E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Microsoft.Owin.Security.Twitt
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Microsoft.Web.Infrastructure.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Newtonsoft.Json.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Owin.dll
+E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\PagedList.dll
+E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\PagedList.Mvc.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.Helpers.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.Mvc.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.Optimization.dll
@@ -27,6 +29,8 @@ E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.WebPages.Deploymen
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.WebPages.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.WebPages.Razor.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\WebGrease.dll
+E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\PagedList.xml
+E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\PagedList.Mvc.xml
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.Helpers.xml
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.Mvc.xml
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\System.Web.Optimization.xml
@@ -51,5 +55,7 @@ E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Microsoft.Owin.Security.Googl
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Microsoft.Owin.Security.Twitter.xml
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.csprojResolveAssemblyReference.cache
+E:\DatSan\prDatSan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.Properties.Resources.resources
+E:\DatSan\prDatSan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.csproj.GenerateResource.Cache
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.dll
 E:\DatSan\prDatSan\projectDatSan\projectDatSan\obj\Debug\projectDatSan.pdb

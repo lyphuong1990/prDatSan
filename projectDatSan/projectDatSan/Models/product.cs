@@ -38,6 +38,12 @@ namespace projectDatSan.Models
 
         public int? quantity { get; set; }
 
+        [StringLength(50)]
+        public string phone { get; set; }
+
+        [StringLength(250)]
+        public string address { get; set; }
+
         public virtual category category { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
