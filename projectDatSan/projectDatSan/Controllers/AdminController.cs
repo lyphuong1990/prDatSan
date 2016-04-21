@@ -8,17 +8,24 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using PagedList;
+using System.Threading.Tasks;
+using System.Net;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
 
 namespace projectDatSan.Controllers
 {
-   
+
     public class AdminController : Controller
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         DBContext db = new DBContext();
         // GET: Admin
-        public ActionResult Index()
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Login()
         {
             return View();
         }
@@ -28,6 +35,7 @@ namespace projectDatSan.Controllers
         //@Author cuongnt
         //@Descript: methor check use and password in form Login  
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult ProcessLogin(String userID, String Password)
         {
 
@@ -43,28 +51,65 @@ namespace projectDatSan.Controllers
             }
             else
             {
-                Session[UserRole1.Username] = UserRole1;
-                Session["username"] = UserRole1.Username;
+                // Session[UserRole1.Username] = UserRole1;
+                //Session["username"] = UserRole1.Username;
                 FormsAuthentication.SetAuthCookie(UserRole1.Username, true);
             }
             if (!string.IsNullOrEmpty(Request.Params["ReturnUrl"]))
                 return Redirect(Request.Params["ReturnUrl"]);
-            return RedirectToAction("Home");
+            //return RedirectToAction("Home");
+            return RedirectToAction("AccountManager");
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LoginAction(String userID, String Password)
+        {
+            Password = class_string.MD5Hash(Password);
+            var UserRole1 = GetUserRole1(userID, Password);
+            var infomationUser = db.accounts.Where(m => m.username == userID.ToUpper().Trim() && m.password == Password && m.active == true).ToList();
+            account acc = new account();
+            acc.username = userID;
+            if (UserRole1 != null)
+            {
+                Session[UserRole1.Username] = UserRole1;
+                HttpContext.GetOwinContext().Authentication
+                  .SignOut(DefaultAuthenticationTypes.ExternalCookie);
+
+                Claim claim1 = new Claim(ClaimTypes.Name, userID);
+                Claim[] claims = new Claim[] { claim1 };
+                ClaimsIdentity claimsIdentity =
+                  new ClaimsIdentity(claims,
+                    DefaultAuthenticationTypes.ApplicationCookie);
+
+                HttpContext.GetOwinContext().Authentication
+                 .SignIn(new AuthenticationProperties() { IsPersistent = false }, claimsIdentity);
+
+                return RedirectToAction("Home", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+
+            return View();
+        }
+
         public UserRole GetUserRole1(string user, string pass)
         {
-            var User = db.accounts.Where(m => m.username.ToLower() == user.ToLower() && m.password == pass && m.active == true).FirstOrDefault();
+            var acount = db.accounts.ToList();
+            var User = db.accounts.Where(m => m.username.ToLower() == user.ToLower() && m.password == pass && m.active == true).ToList();
             if (User != null)
             {
+                // User = User.FirstOrDefault();
                 UserRole _User = new UserRole();
-                _User.Username = User.username;
-                _User.Role = User.role.Value;
-                _User.Active = User.active.Value;
+                _User.Username = User.FirstOrDefault().username;
+                _User.Role = User.FirstOrDefault().role.Value;
+                _User.Active = User.FirstOrDefault().active.Value;
                 return _User;
             }
             return null;
         }
-       
+        [CustomAuthorizeAttributeController(Roles = "1")]
         public ActionResult Home()
         {
 
@@ -73,21 +118,23 @@ namespace projectDatSan.Controllers
         //@Methor:  LogOut 
         //@Author cuongnt
         //@Descript: process Logout system
+        [AllowAnonymous]
         public ActionResult LogOut()
         {
             Session.Clear();
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
         public ActionResult Test()
         {
             return View();
         }
-        public ActionResult AccountManager(string UserID = "" ,int page=1)
+        [CustomAuthorizeAttributeController(Roles = "1")]
+        public ActionResult AccountManager(string UserID = "", int page = 1)
         {
             IQueryable<account> acc;
             List<account> acc1 = new List<account>();
-           
+
             ViewBag.listRole = db.roles.Where(m => m.active == true).ToList();
             if (!string.IsNullOrEmpty(UserID))
             {
@@ -96,7 +143,6 @@ namespace projectDatSan.Controllers
             }
             else
             {
-
                 acc1 = db.accounts.Select(m => m).ToList();
                 return View(acc1.ToPagedList(page, 5));
             }
@@ -108,5 +154,6 @@ namespace projectDatSan.Controllers
             db.SaveChanges();
             return RedirectToAction("AccountManager", "Admin");
         }
+
     }
 }

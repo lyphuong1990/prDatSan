@@ -1232,6 +1232,7 @@
     <Content Include="adminlte\plugins\datetimepicker\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="adminlte\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="adminlte\plugins\input-mask\phone-codes\phone-codes.json" />
+    <None Include="Properties\PublishProfiles\WEBDATSAN.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1283,7 +1284,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\admin\Index.cshtml" />
+    <Content Include="Views\admin\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\admin\Home.cshtml" />
     <Content Include="Views\Shared\admin\_Navbar.cshtml" />

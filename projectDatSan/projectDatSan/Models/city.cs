@@ -17,8 +17,14 @@ namespace projectDatSan.Models
 
         public int id { get; set; }
 
-        [StringLength(10)]
+        [StringLength(100)]
         public string name { get; set; }
+
+        [StringLength(50)]
+        public string latitude { get; set; }
+
+        [StringLength(50)]
+        public string longitude { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<province> provinces { get; set; }

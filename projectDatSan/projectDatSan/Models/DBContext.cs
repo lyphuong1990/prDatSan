@@ -8,7 +8,7 @@ namespace projectDatSan.Models
     public partial class DBContext : DbContext
     {
         public DBContext()
-            : base("name=DBContext")
+            : base("name=DBContext1")
         {
         }
 
@@ -49,10 +49,6 @@ namespace projectDatSan.Models
                 .HasMany(e => e.products)
                 .WithOptional(e => e.category)
                 .HasForeignKey(e => e.category_id);
-
-            modelBuilder.Entity<city>()
-                .Property(e => e.name)
-                .IsFixedLength();
 
             modelBuilder.Entity<city>()
                 .HasMany(e => e.provinces)

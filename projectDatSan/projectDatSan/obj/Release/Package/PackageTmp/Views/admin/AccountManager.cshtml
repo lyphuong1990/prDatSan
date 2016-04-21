@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Quản lý tài khoản hệ thống";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<projectDatSan.Models.account>
+@{
+projectDatSan.Models.DBContext db = new projectDatSan.Models.DBContext();
+}
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        var table = $('#sample-table').dataTable();
+        $('#sample-table tbody').on('click', 'tr', function () {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            $("#CurMsgId").val($(this).attr("msg_id"));
+        });
+        $(".pagedList a").each(function () {
+            $(this).attr("atl", $(this).attr("href"));
+            $(this).attr("href", "#");
+        });
+        $(".pagedList a").click(function () {
+            $("#table").load($(this).attr("atl"), null, function () {
+                if ($("#formDangKi").length > 0) {
+                    location.reload();
+                }
+            });
+        });
+    });
+</script>
+<div class="row margin-bottom">
+    <div class="col-xs-12">
+        <a href="#" class="btn btn-primary">Thêm thành viên</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh sách thành viên</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover" id="sample-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Quyền hạn</th>
+                        <th>Trạng thái</th>
+                        <th style="width:200px;">Action</th>
+                    </tr>
+                    <tbody>
+                       @foreach (var item in Model)
+                       { 
+                        <tr msg_id="@item.id">
+                            <td>@item.id</td>
+                            <td>@item.username</td>
+                            <td>@item.role1.role_name</td>
+                            <td>@(item.active == true ? "Kích hoạt" : "Hủy")</td>
+                            <td>
+                                <a href="#" class="btn btn-primary">Sửa</a>
+                                <a class="btn btn-danger" href='@Url.Action("DeleteAccount", "Admin", new { @id = @item.id })' onclick="return confirm(' bạn có chắc chắn muốn xóa?');">Xóa</a>                             
+                            </td>
+                        </tr>
+                       }
+                       </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+<div class="row">
+    <div class="pagedList col-xs-12" data-tinycms-target="#searchResult">
+       @Html.PagedListPager(Model, page => Url.Action("AccountManager", new { page }), new PagedListRenderOptions { DisplayEllipsesWhenNotShowingAllPageNumbers = true, })
+    </div>
+ 
+</div>

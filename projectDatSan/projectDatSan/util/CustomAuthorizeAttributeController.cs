@@ -15,9 +15,11 @@ namespace projectDatSan.util
                 throw new ArgumentNullException("httpContext");
             if (!httpContext.User.Identity.IsAuthenticated)
                 return false;
-            if (httpContext.Session[httpContext.User.Identity.Name] == null)
+            if (httpContext.Session[httpContext.User.Identity.Name] == "")
                 return false;
             var _UserRole = (UserRole)httpContext.Session[httpContext.User.Identity.Name];
+            if (_UserRole == null)
+                return false;
             string[] _Roles = Roles.Split('|');
             foreach (var i in _Roles)
             {
